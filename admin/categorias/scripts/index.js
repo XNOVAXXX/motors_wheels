@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>
                     <img src="../imagenes/${resultado.IMAGEN}" alt="${resultado.CATEGORIA}" height="80px">
                 </td>
+                <td>
+                    <a href="#" data-id="${resultado.ID_CATEGORIA}" data-bs-toggle="modal" data-bs-target="#Editar">Editar</a>
+                </td>
             `
             listaCategorias.appendChild(row)
         })

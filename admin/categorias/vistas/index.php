@@ -19,6 +19,7 @@
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Imagen</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="lista-categorias">
@@ -45,6 +46,30 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Registrar Categoría</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="Editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Categorías</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label>Nombre: *</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Foto: *</label>
+                            <input type="file" id="foto" name="foto" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Editar Categoría</button>
                     </div>
                 </div>
             </div>
