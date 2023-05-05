@@ -31,8 +31,7 @@
             <div class="page-title">Motors Wheels</div>
         </div>
         
-        <div class="content ">
-            
+        <div class="content">
             <div class="mb-4">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -50,15 +49,11 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-md-flex gap-4 align-items-center">
-                                <div class="d-md-flex gap-4 align-items-center">
-                                    <form class="mb-12 mb-md-0">
-                                        <div class="row g-12">
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" placeholder="Buscar" required autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Buscar" required autocomplete="off" id="buscar">
+                                </div>
+                                <div class="col-sm-6 d-grid gap-2">
                                     <button data-bs-toggle="modal" data-bs-target="#Registrar" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">Registrar</button>
                                 </div>
                             </div>
@@ -117,13 +112,14 @@
                                 <div class="modal-body">
                                     <form id="formulario-editar">
                                         <input type="hidden" name="id">
+                                        <input type="hidden" name="foto_anterior">
                                         <div class="mb-3">
                                             <label class="form-label">Nombre: *</label>
                                             <input type="text" class="form-control" placeholder="Nombre Categoría" name="nombre" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Foto: *</label>
-                                            <input type="file" class="form-control" placeholder="Foto" required autocomplete="off" name="foto">
+                                            <input type="file" class="form-control" placeholder="Foto" autocomplete="off" name="foto">
                                         </div>
                                         <div class="d-grid gap-2">
                                             <button type="submit" class="btn btn-primary">Editar</button>

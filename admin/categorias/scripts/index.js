@@ -3,12 +3,29 @@ const formulario_editar     = document.querySelector('#formulario-editar')
 const formulario_registrar  = document.querySelector('#formulario-registrar')
 const boton_editar          = document.querySelectorAll('.editar-categoria')
 const mensaje               = document.querySelector('#mensaje')
+const buscar                = document.querySelector('#buscar')
+
+buscar.addEventListener('keyup', (e) => {
+    e.preventDefault()
+
+    const texto = buscar.value.toLowerCase()
+    const filas = listaCategorias.querySelectorAll('tr')
+
+    filas.forEach(fila => {
+        const nombre = fila.childNodes[3].textContent.toLowerCase()
+
+        if(nombre.indexOf(texto) !== -1){
+            fila.style.display = 'table-row'
+        }else{
+            fila.style.display = 'none'
+        }
+    })
+})
 
 listaCategorias.addEventListener('click', (e) => {
     e.preventDefault()
 
     editarCategoria(e)
-
     
 })
 
@@ -64,13 +81,13 @@ const editarCategoria = (e) => {
         fetch(`http://localhost/motors_wheels/admin/categorias/controladores/getCategoria.php?Id=${id}`)
         .then(response => response.json())
         .then(data => {
-            formulario_editar.nombre.value = data.CATEGORIA
-            formulario_editar.id.value     = data.ID_CATEGORIA
-            const transfer = new DataTransfer()
-            transfer.items.add(new File([data.IMAGEN], data.IMAGEN, {type: 'image/png'}))
-            //change formato de archivo
+            formulario_editar.nombre.value          = data.CATEGORIA
+            formulario_editar.id.value              = data.ID_CATEGORIA
+            formulario_editar.foto_anterior.value   = data.IMAGEN
 
-            formulario_editar.foto.files   = transfer.files
+            //const transfer = new DataTransfer()
+            //transfer.items.add(new File([data.IMAGEN], data.IMAGEN, {type: 'image/png'}))
+            //formulario_editar.foto.files   = transfer.files
         })
     }
 }
@@ -112,11 +129,11 @@ const mostrarMensaje = (formulario, texto, tipo) => {
     const modal = bootstrap.Modal.getInstance(formulario.parentNode.parentNode.parentNode.parentNode)
     modal.hide()
 
-    mensaje.classList.add(`alert','alert-${tipo}`)
+    mensaje.classList.add(`alert`,`alert-${tipo}`)
     mensaje.innerHTML = texto
 
     setTimeout(() => {
-        mensaje.classList.remove(`alert','alert-${tipo}`)
+        mensaje.classList.remove(`alert`,`alert-${tipo}`)
         mensaje.innerHTML = ''
     }, 3000)
 }

@@ -20,7 +20,7 @@ class Categorias extends Conexion {
         echo json_encode($statement->fetch());
     }
 
-    public function registrarCategoria($Nombre, $Source, $Tipo){
+    public function registrarCategoria($Nombre, $Source){
         $Foto = $Nombre.'.png';
 
         move_uploaded_file($Source, '../imagenes/'.$Foto);
@@ -31,13 +31,19 @@ class Categorias extends Conexion {
         echo json_encode(array('status' => 'success', 'message' => 'Categoría Registrada'));
     }
 
-    public function editarCategoria($Id, $Nombre, $Source, $Tipo){
-        $Foto = $Nombre.'.png';
+    public function editarCategoria($Id, $Nombre, $Source){
+        $Foto = $_POST['foto_anterior'];
 
-        if(file_exists('../imagenes/'.$Foto)){
-            unlink('../imagenes/'.$Foto);
+        if($_FILES['foto']['tmp_name'] !== ''){
+
+            if(file_exists('../imagenes/'.$Foto)){
+                unlink('../imagenes/'.$Foto);
+            }
+            
+            $Foto = $Nombre.'.png';
+
+            move_uploaded_file($Source, '../imagenes/'.$Foto);
         }
-        move_uploaded_file($Source, '../imagenes/'.$Foto);
 
         $statement = $this->db->prepare("UPDATE categorias SET CATEGORIA = :Nombre, IMAGEN = :Foto WHERE ID_CATEGORIA = :Id");
         $statement->execute(array(':Id' => $Id, ':Nombre' => $Nombre, ':Foto' => $Foto));
