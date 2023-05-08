@@ -71,33 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody id="lista-productos">
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            <img src="../../assets/images/products/1.jpg" class="rounded" width="40" alt="...">
-                                        </a>
-                                    </td>
-                                    <td>Audifonos Panasonic</td>
-                                    <td>
-                                        <span class="text-success">Auriculares</span>
-                                    </td>
-                                    <td>$499,90</td>
-                                    <td>
-                                        <span class="text-success">En Stock </span> #30
-                                    </td>
-                                    <td class="text-end">
-                                        <div class="d-flex">
-                                            <div class="dropdown ms-auto">
-                                                <a href="#" data-bs-toggle="dropdown" class="btn btn-floating" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="bi bi-three-dots"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="#Editar" class="dropdown-item">Editar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
