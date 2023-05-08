@@ -4,6 +4,7 @@ const categorias = document.querySelector('#categoria')
 
 document.addEventListener('DOMContentLoaded', () => {
     listarProductos()
+    listarCategorias()
 })
 
 formulario_registrar.addEventListener('submit', (e) => {
@@ -60,7 +61,7 @@ const listarCategorias = () => {
         data.forEach(categoria => {
             const option = document.createElement('option')
             option.value = categoria.ID_CATEGORIA
-            option.textContent = categoria.NOMBRE
+            option.textContent = categoria.CATEGORIA
             categorias.appendChild(option)
         })
     })
