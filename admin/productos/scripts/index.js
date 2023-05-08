@@ -1,11 +1,21 @@
 const listaProductos = document.querySelector('#lista-productos')
+const formulario_registrar  = document.querySelector('#formulario-registrar')
+const categorias = document.querySelector('#categoria')
 
 document.addEventListener('DOMContentLoaded', () => {
     listarProductos()
 })
 
+formulario_registrar.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const datos = new FormData(formulario_registrar)
+
+    console.log(datos)
+})
+
 const listarProductos = () => {
-    
+    listaProductos.innerHTML = ``
     fetch('http://localhost/motors_wheels/admin/productos/controladores/getProductos.php')
     .then(res => res.json())
     .then(data => {
@@ -39,6 +49,19 @@ const listarProductos = () => {
             </td>
             `
             listaProductos.appendChild(row)
+        })
+    })
+}
+
+const listarCategorias = () => {
+    fetch('http://localhost/motors_wheels/admin/categorias/controladores/getCategorias.php')
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(categoria => {
+            const option = document.createElement('option')
+            option.value = categoria.ID_CATEGORIA
+            option.textContent = categoria.NOMBRE
+            categorias.appendChild(option)
         })
     })
 }

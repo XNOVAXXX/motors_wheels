@@ -78,42 +78,41 @@
                     <div class="modal fade" id="Registrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
-
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Registrar Producto</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST">
+                                    <form id="formulario-registrar">
                                         <div class="mb-3">
                                             <label class="form-label">Nombre: *</label>
-                                            <input type="email" class="form-control" placeholder="Nombre producto" required autocomplete="off">
+                                            <input type="email" name="nombre" id="nombre" class="form-control" placeholder="Nombre producto" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Categoría: *</label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" name="categoria" id="categoria">
                                                 <option selected>Seleccione</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Descripción: *</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Precio: *</label>
-                                            <input type="number" class="form-control" placeholder="Precio producto" required autocomplete="off">
+                                            <input type="number" class="form-control" name="precio" id="precio" placeholder="Precio producto" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Precio Promoción: *</label>
-                                            <input type="number" class="form-control" placeholder="Precio promoción" required autocomplete="off">
+                                            <input type="number" class="form-control" name="precio_promocion" id="precio_promocion" placeholder="Precio promoción" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Stock: *</label>
-                                            <input type="number" class="form-control" placeholder="Stock" required autocomplete="off">
+                                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Foto: *</label>
-                                            <input type="file" class="form-control" placeholder="Foto" required autocomplete="off">
+                                            <input type="file" class="form-control" name="foto" id="foto" placeholder="Foto" required autocomplete="off">
                                         </div>
                                         <div class="d-grid gap-2">
                                             <button type="button" class="btn btn-primary">Registrar</button>
