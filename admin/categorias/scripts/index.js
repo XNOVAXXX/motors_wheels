@@ -41,6 +41,7 @@ formulario_registrar.addEventListener('submit', (e) => {
     .then(res => res.json())
     .then(data => {
         if(data.status === 'success'){
+            formulario_registrar.reset()
             mostrarMensaje(formulario_registrar, data.message, 'success')
         }else{
             mostrarMensaje(formulario_registrar, data.message, 'danger')
@@ -75,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const editarCategoria = (e) => {
-
     if(e.target.classList.contains('editar-categoria')){
         const id = e.target.dataset.id
         fetch(`http://localhost/motors_wheels/admin/categorias/controladores/getCategoria.php?Id=${id}`)
         .then(response => response.json())
         .then(data => {
+            
             formulario_editar.nombre.value          = data.CATEGORIA
             formulario_editar.id.value              = data.ID_CATEGORIA
             formulario_editar.foto_anterior.value   = data.IMAGEN

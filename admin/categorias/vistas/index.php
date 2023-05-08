@@ -40,7 +40,7 @@
                                 <i class="bi bi-globe2 small me-2"></i> Dashboard
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Productos</li>
+                        <li class="breadcrumb-item active" aria-current="page">Categorías</li>
                     </ol>
                 </nav>
             </div>
