@@ -1,6 +1,7 @@
 const listaProductos = document.querySelector('#lista-productos')
 const formulario_registrar  = document.querySelector('#formulario-registrar')
 const categorias = document.querySelector('#categoria')
+const mensaje = document.querySelector('#mensaje')
 
 document.addEventListener('DOMContentLoaded', () => {
     listarProductos()
@@ -12,7 +13,20 @@ formulario_registrar.addEventListener('submit', (e) => {
 
     const datos = new FormData(formulario_registrar)
 
-    console.log(datos)
+    fetch('http://localhost/motors_wheels/admin/productos/controladores/registrarProducto.php', {
+        method: 'POST',
+        body: datos
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'success'){
+            formulario_registrar.reset()
+            mostrarMensaje(formulario_registrar, data.message, data.status)
+        }else{
+            mostrarMensaje(formulario_registrar, data.message, 'danger')
+        }
+        listarProductos()
+    })
 })
 
 const listarProductos = () => {
@@ -65,4 +79,18 @@ const listarCategorias = () => {
             categorias.appendChild(option)
         })
     })
+}
+
+const mostrarMensaje = (formulario, texto, tipo) => {
+    
+    const modal = bootstrap.Modal.getInstance(formulario.parentNode.parentNode.parentNode.parentNode)
+    modal.hide()
+
+    mensaje.classList.add(`alert`,`alert-${tipo}`)
+    mensaje.innerHTML = texto
+
+    setTimeout(() => {
+        mensaje.classList.remove(`alert`,`alert-${tipo}`)
+        mensaje.innerHTML = ''
+    }, 3000)
 }

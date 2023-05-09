@@ -58,6 +58,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="mensaje"></div>
                     <div class="table-responsive">
                         <table class="table table-custom table-lg mb-0" id="products">
                             <thead>
@@ -86,7 +87,7 @@
                                     <form id="formulario-registrar">
                                         <div class="mb-3">
                                             <label class="form-label">Nombre: *</label>
-                                            <input type="email" name="nombre" id="nombre" class="form-control" placeholder="Nombre producto" required autocomplete="off">
+                                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre producto" required autocomplete="off">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Categoría: *</label>
@@ -115,7 +116,7 @@
                                             <input type="file" class="form-control" name="foto" id="foto" placeholder="Foto" required autocomplete="off">
                                         </div>
                                         <div class="d-grid gap-2">
-                                            <button type="button" class="btn btn-primary">Registrar</button>
+                                            <button type="submit" class="btn btn-primary">Registrar</button>
                                         </div>
                                     </form>
                                 </div>

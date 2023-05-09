@@ -18,4 +18,26 @@ class Productos extends Conexion {
         echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public function registrarProducto($nombre, $categoria, $descripcion, $precio, $precio_promocion, $stock, $source){
+        $foto = $nombre.'.png';
+
+        move_uploaded_file($source, '../imagenes/'.$foto);
+
+        $statement = $this->db->prepare("INSERT INTO productos 
+        (NOMBRE, ID_CATEGORIA, DESCRIPCION, PRECIO, PRECIO_PROMOCION, STOCK, IMAGEN)
+        VALUES 
+        (:nombre, :categoria, :descripcion, :precio, :precio_promocion, :stock, :foto)");
+        $statement->execute(array(
+            ':nombre'           => $nombre,
+            ':categoria'        => $categoria,
+            ':descripcion'      => $descripcion,
+            ':precio'           => $precio,
+            ':precio_promocion' => $precio_promocion,
+            ':stock'            => $stock,
+            ':foto'             => $foto
+        ));
+
+        echo json_encode(array('status' => 'success', 'message' => 'Producto Registrado'));
+    }
+
 }
