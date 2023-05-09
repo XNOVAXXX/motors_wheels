@@ -17,7 +17,7 @@ formulario_inicio.addEventListener('submit', (e) => {
             mensajes.textContent = data.message
             setTimeout(() => {
                 window.location.href = 'http://localhost/motors_wheels/admin/dashboard/vistas/index.php'
-            }, 1500);
+            }, 2500);
         }else{
             mensajes.classList.add('alert','alert-danger')
             mensajes.textContent = data.message
