@@ -85,10 +85,6 @@ const editarCategoria = (e) => {
             formulario_editar.nombre.value          = data.CATEGORIA
             formulario_editar.id.value              = data.ID_CATEGORIA
             formulario_editar.foto_anterior.value   = data.IMAGEN
-
-            //const transfer = new DataTransfer()
-            //transfer.items.add(new File([data.IMAGEN], data.IMAGEN, {type: 'image/png'}))
-            //formulario_editar.foto.files   = transfer.files
         })
     }
 }
