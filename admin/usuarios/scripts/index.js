@@ -1,5 +1,5 @@
 const formulario_inicio = document.querySelector('#formulario_inicio')
-const mensajes = document.querySelector('#mensaje')
+const mensajes          = document.querySelector('#mensaje')
 
 formulario_inicio.addEventListener('submit', (e) => {
     e.preventDefault()
