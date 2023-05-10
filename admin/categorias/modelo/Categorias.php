@@ -11,7 +11,7 @@ class Categorias extends Conexion {
     public function getCategorias(){
         $statement = $this->db->prepare("SELECT * FROM categorias");
         $statement->execute();
-        echo json_encode($statement->fetchAll());
+        echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
     }
 
     public function getCategoria($Id){
@@ -50,5 +50,10 @@ class Categorias extends Conexion {
         
         echo json_encode(array('status' => 'success', 'message' => 'Categoría Actualizada'));
     }
-    
+
+    public function getCategoriasTienda(){
+        $statement = $this->db->prepare("SELECT DISTINCT c.ID_CATEGORIA, c.CATEGORIA, c.IMAGEN, COUNT(*) AS TOTAL FROM productos p INNER JOIN categorias c ON c.ID_CATEGORIA = p.ID_CATEGORIA GROUP BY c.ID_CATEGORIA;        ");
+        $statement->execute();
+        echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
+    }
 }
