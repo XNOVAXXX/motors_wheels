@@ -69,5 +69,14 @@ class Productos extends Conexion {
         echo json_encode(array('status' => 'success', 'message' => 'Producto Actualizado'));
 
     }
-
+    
+    public function getProductosTienda(){
+        $statement = $this->db->prepare("SELECT c.ID_CATEGORIA, c.CATEGORIA, c.IMAGEN AS IMAGEN_CATEGORIA, p.ID_PRODUCTO, 
+        p.NOMBRE, p.PRECIO, P.STOCK, p.IMAGEN AS IMAGEN_PRODUCTO 
+        FROM productos p 
+        INNER JOIN categorias c ON p.ID_CATEGORIA = c.ID_CATEGORIA;
+        ");
+        $statement->execute();
+        echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
+    }
 }
