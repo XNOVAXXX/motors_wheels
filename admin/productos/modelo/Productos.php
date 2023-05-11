@@ -79,4 +79,13 @@ class Productos extends Conexion {
         $statement->execute();
         echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
     }
+
+    public function getProductoTienda($Id){
+        $statement = $this->db->prepare("SELECT c.ID_CATEGORIA, c.CATEGORIA, c.IMAGEN AS IMAGEN_CATEGORIA, p.ID_PRODUCTO, 
+        p.NOMBRE, p.PRECIO, P.STOCK, p.IMAGEN AS IMAGEN_PRODUCTO, p.DESCRIPCION, p.PRECIO_PROMOCION
+        FROM productos p 
+        INNER JOIN categorias c ON p.ID_CATEGORIA = c.ID_CATEGORIA WHERE p.ID_PRODUCTO = :Id");
+        $statement->execute(array(':Id' => $Id));
+        echo json_encode($statement->fetch(PDO::FETCH_ASSOC));
+    }
 }
