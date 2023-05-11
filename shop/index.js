@@ -1,9 +1,19 @@
-const listaCategorias = document.querySelector('#lista-categorias')
-const listaProductos  = document.querySelector('#lista-productos')
+const listaCategorias   = document.querySelector('#lista-categorias')
+const listaProductos    = document.querySelector('#lista-productos')
+const totalProductos1    = document.querySelector('#total-productos1')
+const totalProductos2    = document.querySelector('#total-productos2')
+const carritoCompras      = document.querySelector('#carrito')
+const vecearCarrito     = document.querySelector('#vacear-carrito')
+const subtotal = document.querySelector('#sub-total')
 
 let carrito = []
 
 document.addEventListener('DOMContentLoaded', () => {
+    if(localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        cantidadProductos()
+        mostrarCarrito()
+    }
 
     listarCategorias()
     listarProductos()
@@ -15,6 +25,65 @@ listaProductos.addEventListener('click', (e) => {
     agregarCarrito(e)
 
 })
+
+carritoCompras.addEventListener('click', (e) => {
+
+    eliminarProducto(e)
+
+    cantidadProductos()
+    mostrarCarrito()
+})
+
+vecearCarrito.addEventListener('click', (e) => {
+
+    e.preventDefault()
+
+    carrito = []
+    localStorage.setItem('carrito', carrito)
+
+    mostrarCarrito()
+    cantidadProductos()
+})
+
+const eliminarProducto = (e) => {
+    e.preventDefault()
+    if(e.target.classList.contains('eliminar-producto')){
+        const producto = e.target.parentElement.dataset.id
+        carrito = carrito.filter(productoCarrito => productoCarrito.id !== parseInt(producto))
+    }
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
+const mostrarCarrito = () => {
+
+    carritoCompras.innerHTML = ''
+
+    carrito.forEach(producto => {
+        const div = document.createElement('div')
+        div.classList.add('cartmini__widget-item')
+        div.innerHTML = `
+            <div class="cartmini__thumb">
+                <a href="product-details.html">
+                    <img src="http://localhost/motors_wheels/admin/productos/imagenes/${producto.img}" alt="">
+                </a>
+            </div>
+            <div class="cartmini__content">
+                <h5 class="cartmini__title"><a href="product-details.html">${producto.nombre}</a></h5>
+                <div class="cartmini__price-wrapper">
+                    <span class="cartmini__price">$${producto.precio}</span>
+                    <span class="cartmini__quantity">x${producto.cantidad}</span>
+                </div>
+            </div>
+            <a href="#" class="cartmini__del" data-id="${producto.id}">
+                <i class="fa-regular fa-xmark eliminar-producto"></i>
+            </a>
+        `
+        carritoCompras.appendChild(div)
+    })
+
+    subTotal()
+
+}
 
 const agregarCarrito = (e) => {
     if(e.target.classList.contains('agregar-carrito')) {
@@ -31,11 +100,20 @@ const agregarCarrito = (e) => {
                 precio: data.PRECIO,
                 cantidad: 1
             }
-            console.log(datosProducto)
+            if(carrito.some(producto => producto.id === datosProducto.id)){
+                carrito.forEach(productoCarrito => {
+                    if(productoCarrito.id === datosProducto.id){
+                        productoCarrito.cantidad++
+                    }
+                })
+            }else{
+                carrito = [...carrito, datosProducto]
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito))
+            cantidadProductos()
+            mostrarCarrito()
         })
-
     }
-
 }
 
 const listarCategorias = () => {
@@ -150,4 +228,28 @@ const listarProductos = () => {
         })
     })
 
+}
+
+const cantidadProductos = () => {
+
+    let cantidad = 0
+
+    carrito.forEach(producto => {
+        cantidad += producto.cantidad
+    })
+
+    totalProductos1.innerHTML = cantidad
+    totalProductos2.innerHTML = cantidad
+
+}
+
+const subTotal = () => {
+
+    let subTotal = 0
+
+    carrito.forEach(producto => {
+        subTotal += producto.cantidad * producto.precio
+    })
+
+    subtotal.innerHTML = `$${subTotal}`
 }
