@@ -1,10 +1,10 @@
 const listaCategorias   = document.querySelector('#lista-categorias')
 const listaProductos    = document.querySelector('#lista-productos')
-const totalProductos1    = document.querySelector('#total-productos1')
-const totalProductos2    = document.querySelector('#total-productos2')
-const carritoCompras      = document.querySelector('#carrito')
+const totalProductos1   = document.querySelector('#total-productos1')
+const totalProductos2   = document.querySelector('#total-productos2')
+const carritoCompras    = document.querySelector('#carrito')
 const vecearCarrito     = document.querySelector('#vacear-carrito')
-const subtotal = document.querySelector('#sub-total')
+const subtotal          = document.querySelector('#sub-total')
 
 let carrito = []
 
@@ -43,6 +43,7 @@ vecearCarrito.addEventListener('click', (e) => {
 
     mostrarCarrito()
     cantidadProductos()
+    
 })
 
 const eliminarProducto = (e) => {
