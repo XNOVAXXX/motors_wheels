@@ -11,11 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 boton.addEventListener('click', (e) => {
+
     e.preventDefault()
+
     const datos = new FormData(formulario)
 
-    console.log(datos)
+    const datosCliente  = {
+        nombres: datos.get('nombres'),
+        apellidos: datos.get('apellidos'),
+        email: datos.get('email'),
+        celular: datos.get('celular'),
+        direccion: datos.get('direccion'),
+        pais: datos.get('pais')
+    }
 
+    const productosCarrito = {
+        productos: carrito
+    }
+
+    const datosOrden = new FormData()
+
+    datosOrden.append('datosCliente', JSON.stringify(datosCliente))
+    datosOrden.append('productosCarrito', JSON.stringify(productosCarrito))
+
+    fetch(`http://localhost/motors_wheels/admin/ordenes/controladores/registrarOrden.php`, {
+        method: 'POST',
+        body: datosOrden
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
 })
 
 const listarProductosCarrito = () => {
